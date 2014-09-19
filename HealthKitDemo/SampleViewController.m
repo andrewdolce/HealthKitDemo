@@ -63,7 +63,9 @@
                                                               NSLog(@"Error fetching samples from HealthKit: %@", error);
                                                           } else {
                                                               self.samples = results;
-                                                              [self.sampleTableView reloadData];
+                                                              dispatch_async(dispatch_get_main_queue(), ^{
+                                                                  [self.sampleTableView reloadData];
+                                                              });
                                                           }
                                                       }];
     [self.healthStore executeQuery:query];
@@ -91,8 +93,8 @@
     }
     
     HKQuantitySample *sample = [self.samples objectAtIndex:indexPath.row];
-    double grams = [sample.quantity doubleValueForUnit:[HKUnit gramUnit]];
-    cell.textLabel.text = [NSString stringWithFormat:@"%g grams", grams];
+    double milligrams = [sample.quantity doubleValueForUnit:[HKUnit unitFromString:@"mg"]];
+    cell.textLabel.text = [NSString stringWithFormat:@"%g mg", milligrams];
     cell.detailTextLabel.text = [NSString stringWithFormat:@"Reported by %@ on %@", sample.source.name, sample.startDate];
     
     return cell;
