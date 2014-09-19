@@ -11,7 +11,7 @@
 		AFC480AB19CB5F5A001D8F79 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AFC480AA19CB5F5A001D8F79 /* main.m */; };
 		AFC480AE19CB5F5A001D8F79 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AFC480AD19CB5F5A001D8F79 /* AppDelegate.m */; };
 		AFC480B119CB5F5A001D8F79 /* SampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFC480B019CB5F5A001D8F79 /* SampleViewController.m */; };
-		AFC480B419CB5F5A001D8F79 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFC480B319CB5F5A001D8F79 /* SecondViewController.m */; };
+		AFC480B419CB5F5A001D8F79 /* NewEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFC480B319CB5F5A001D8F79 /* NewEntryViewController.m */; };
 		AFC480B719CB5F5A001D8F79 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFC480B519CB5F5A001D8F79 /* Main.storyboard */; };
 		AFC480B919CB5F5A001D8F79 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AFC480B819CB5F5A001D8F79 /* Images.xcassets */; };
 		AFC480BC19CB5F5A001D8F79 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AFC480BA19CB5F5A001D8F79 /* LaunchScreen.xib */; };
@@ -37,8 +37,8 @@
 		AFC480AD19CB5F5A001D8F79 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		AFC480AF19CB5F5A001D8F79 /* SampleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SampleViewController.h; sourceTree = "<group>"; };
 		AFC480B019CB5F5A001D8F79 /* SampleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SampleViewController.m; sourceTree = "<group>"; };
-		AFC480B219CB5F5A001D8F79 /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
-		AFC480B319CB5F5A001D8F79 /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+		AFC480B219CB5F5A001D8F79 /* NewEntryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewEntryViewController.h; sourceTree = "<group>"; };
+		AFC480B319CB5F5A001D8F79 /* NewEntryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewEntryViewController.m; sourceTree = "<group>"; };
 		AFC480B619CB5F5A001D8F79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AFC480B819CB5F5A001D8F79 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		AFC480BB19CB5F5A001D8F79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -94,8 +94,8 @@
 				AFC480AD19CB5F5A001D8F79 /* AppDelegate.m */,
 				AFC480AF19CB5F5A001D8F79 /* SampleViewController.h */,
 				AFC480B019CB5F5A001D8F79 /* SampleViewController.m */,
-				AFC480B219CB5F5A001D8F79 /* SecondViewController.h */,
-				AFC480B319CB5F5A001D8F79 /* SecondViewController.m */,
+				AFC480B219CB5F5A001D8F79 /* NewEntryViewController.h */,
+				AFC480B319CB5F5A001D8F79 /* NewEntryViewController.m */,
 				AFC480B519CB5F5A001D8F79 /* Main.storyboard */,
 				AFC480B819CB5F5A001D8F79 /* Images.xcassets */,
 				AFC480BA19CB5F5A001D8F79 /* LaunchScreen.xib */,
@@ -236,7 +236,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AFC480B419CB5F5A001D8F79 /* SecondViewController.m in Sources */,
+				AFC480B419CB5F5A001D8F79 /* NewEntryViewController.m in Sources */,
 				AFC480AE19CB5F5A001D8F79 /* AppDelegate.m in Sources */,
 				AFC480B119CB5F5A001D8F79 /* SampleViewController.m in Sources */,
 				AFC480AB19CB5F5A001D8F79 /* main.m in Sources */,
