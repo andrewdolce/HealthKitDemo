@@ -10,6 +10,5 @@
 
 @interface SampleViewController : UIViewController
 
-
 @end
 
