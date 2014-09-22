@@ -21,7 +21,7 @@
     [super viewDidAppear:animated];
     
     [self requestHealthKitPermissionsWithCompletion:^(BOOL success, NSError *error) {
-        [self refreshSamples];
+        [self startObservingHealthKit];
     }];
 }
 
@@ -60,6 +60,16 @@
                                                           }
                                                       }];
     [self.healthStore executeQuery:query];
+}
+
+#pragma mark - Observation of HealthKit
+
+- (void)startObservingHealthKit {
+    HKQuantityType *caffeineType = [HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierDietaryCaffeine];
+    HKObserverQuery *observationQuery = [[HKObserverQuery alloc] initWithSampleType:caffeineType predicate:nil updateHandler:^(HKObserverQuery *query, HKObserverQueryCompletionHandler completionHandler, NSError *error) {
+        [self refreshSamples];
+    }];
+    [self.healthStore executeQuery:observationQuery];
 }
 
 #pragma mark - UITableViewDataSource
