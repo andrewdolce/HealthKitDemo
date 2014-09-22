@@ -7,22 +7,14 @@
 //
 
 #import "NewEntryViewController.h"
-#import <HealthKit/HealthKit.h>
 
 @interface NewEntryViewController () <UITextFieldDelegate>
 
-// TODO: Set this with DI
-@property (strong, nonatomic) HKHealthStore *healthStore;
 @property (weak, nonatomic) IBOutlet UITextField *quantityTextField;
 
 @end
 
 @implementation NewEntryViewController
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    self.healthStore = [[HKHealthStore alloc] init];
-}
 
 - (void)saveQuantityIfAble {
     double value = [self.quantityTextField.text doubleValue];

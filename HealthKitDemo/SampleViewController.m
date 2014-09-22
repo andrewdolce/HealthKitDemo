@@ -7,27 +7,18 @@
 //
 
 #import "SampleViewController.h"
-#import <HealthKit/HealthKit.h>
 
 @interface SampleViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *sampleTableView;
-@property (strong, nonatomic) HKHealthStore *healthStore;
 @property (strong, nonatomic) NSArray *samples;
 
 @end
 
 @implementation SampleViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
-    
-    self.healthStore = [[HKHealthStore alloc] init];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     
     [self requestHealthKitPermissionsWithCompletion:^(BOOL success, NSError *error) {
         [self refreshSamples];
