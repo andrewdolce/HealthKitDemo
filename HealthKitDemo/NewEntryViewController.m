@@ -35,15 +35,28 @@
         [self.healthStore saveObject:sample withCompletion:^(BOOL success, NSError *error) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 self.quantityTextField.enabled = YES;
+                [self.quantityTextField setText:@""];
                 if (success) {
                     NSLog( @"Successfully saved quantity to HealthKit!" );
-                    [self.quantityTextField setText:@""];
+                    [self showAlertWithTitle:@"Success" message:@"Your data was saved!"];
                 } else {
                     NSLog( @"Error saving to HK: %@", error );
+                    [self showAlertWithTitle:@"Error" message:@"Your data could not be saved."];
                 }
             });
         }];
     }
+}
+
+- (void)showAlertWithTitle:(NSString *)title message:(NSString *)message {
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        [alertController dismissViewControllerAnimated:YES completion:nil];
+    }];
+    [alertController addAction:okAction];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 #pragma mark - UITextFieldDelegate Methods
