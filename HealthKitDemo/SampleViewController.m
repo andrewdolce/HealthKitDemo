@@ -17,6 +17,11 @@
 
 @implementation SampleViewController
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.sampleTableView.tableFooterView = [[UIView alloc] init];
+}
+
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self refreshSamples];
@@ -59,9 +64,24 @@
     HKQuantitySample *sample = [self.samples objectAtIndex:indexPath.row];
     double milligrams = [sample.quantity doubleValueForUnit:[HKUnit unitFromString:@"mg"]];
     cell.textLabel.text = [NSString stringWithFormat:@"%g mg", milligrams];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"Reported by %@ on %@", sample.source.name, sample.startDate];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateStyle:NSDateFormatterShortStyle];
+    [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+    NSString *formattedDate = [dateFormatter stringFromDate:sample.startDate];
+    
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"Reported by %@ on %@", sample.source.name, formattedDate];
     
     return cell;
+}
+
+#pragma mark - UITableViewDelegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row < self.samples.count) {
+        return tableView.rowHeight;
+    }
+    return 0;
 }
 
 #pragma mark - NSNotifications
