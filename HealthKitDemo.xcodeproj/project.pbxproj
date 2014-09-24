@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AF665EC319D20D8A00B73D86 /* CaffeineDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = AF665EC219D20D8A00B73D86 /* CaffeineDataStore.m */; };
 		AFBFF18019CB820D00EE365A /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFBFF17F19CB820D00EE365A /* HealthKit.framework */; };
 		AFC480AB19CB5F5A001D8F79 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AFC480AA19CB5F5A001D8F79 /* main.m */; };
 		AFC480AE19CB5F5A001D8F79 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AFC480AD19CB5F5A001D8F79 /* AppDelegate.m */; };
@@ -29,6 +30,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AF665EC119D20D8A00B73D86 /* CaffeineDataStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaffeineDataStore.h; sourceTree = "<group>"; };
+		AF665EC219D20D8A00B73D86 /* CaffeineDataStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaffeineDataStore.m; sourceTree = "<group>"; };
 		AFBFF17F19CB820D00EE365A /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		AFC480A519CB5F5A001D8F79 /* HealthKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HealthKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFC480A919CB5F5A001D8F79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -100,6 +103,8 @@
 				AFC480B819CB5F5A001D8F79 /* Images.xcassets */,
 				AFC480BA19CB5F5A001D8F79 /* LaunchScreen.xib */,
 				AFC480A819CB5F5A001D8F79 /* Supporting Files */,
+				AF665EC119D20D8A00B73D86 /* CaffeineDataStore.h */,
+				AF665EC219D20D8A00B73D86 /* CaffeineDataStore.m */,
 			);
 			path = HealthKitDemo;
 			sourceTree = "<group>";
@@ -239,6 +244,7 @@
 				AFC480B419CB5F5A001D8F79 /* NewEntryViewController.m in Sources */,
 				AFC480AE19CB5F5A001D8F79 /* AppDelegate.m in Sources */,
 				AFC480B119CB5F5A001D8F79 /* SampleViewController.m in Sources */,
+				AF665EC319D20D8A00B73D86 /* CaffeineDataStore.m in Sources */,
 				AFC480AB19CB5F5A001D8F79 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

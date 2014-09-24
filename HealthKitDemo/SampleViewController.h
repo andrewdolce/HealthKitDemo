@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <HealthKit/HealthKit.h>
+#import "CaffeineDataStore.h"
 
 @interface SampleViewController : UIViewController
 
-@property (strong, nonatomic) HKHealthStore *healthStore;
+@property (strong, nonatomic) CaffeineDataStore *caffeineDataStore;
 
 @end
 

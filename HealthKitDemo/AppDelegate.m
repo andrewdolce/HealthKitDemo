@@ -8,10 +8,12 @@
 
 #import "AppDelegate.h"
 #import <HealthKit/HealthKit.h>
+#import "CaffeineDataStore.h"
 
 @interface AppDelegate ()
 
 @property (strong, nonatomic) HKHealthStore *healthStore;
+@property (strong, nonatomic) CaffeineDataStore *caffeineDataStore;
 
 @end
 
@@ -20,20 +22,22 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.healthStore = [[HKHealthStore alloc] init];
-    [self setUpHealthStoreForTabBarControllers];
+    self.caffeineDataStore = [[CaffeineDataStore alloc] initWithHealthStore:self.healthStore];
+    
+    [self setUpCaffeineDataStoreForTabBarControllers];
+    
     return YES;
 }
 
 #pragma mark - HKHealthStore Setup
 
-// Set the healthStore property on each view controller that will be presented to the user. The root view controller is a tab
+// Set the caffeineDataStore property on each view controller that will be presented to the user. The root view controller is a tab
 // bar controller. Each tab of the root view controller is a view controller that presents HealthKit information to the user.
-- (void)setUpHealthStoreForTabBarControllers {
+- (void)setUpCaffeineDataStoreForTabBarControllers {
     UITabBarController *tabBarController = (UITabBarController *)[self.window rootViewController];
-    
     for (id viewController in tabBarController.viewControllers) {
-        if ([viewController respondsToSelector:@selector(setHealthStore:)]) {
-            [viewController setHealthStore:self.healthStore];
+        if ([viewController respondsToSelector:@selector(setCaffeineDataStore:)]) {
+            [viewController setCaffeineDataStore:self.caffeineDataStore];
         }
     }
 }

@@ -19,57 +19,20 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
-    [self requestHealthKitPermissionsWithCompletion:^(BOOL success, NSError *error) {
-        [self startObservingHealthKit];
-    }];
+    [self refreshSamples];
 }
 
 #pragma mark - HealthKit Data Fetch
 
-- (void)requestHealthKitPermissionsWithCompletion:(void(^)(BOOL success, NSError *error))completion {
-    HKQuantityType *caffeineType = [HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierDietaryCaffeine];
-    NSSet *types = [NSSet setWithObjects:caffeineType, nil];
-    
-    if ([HKHealthStore isHealthDataAvailable]) {
-        [self.healthStore requestAuthorizationToShareTypes:types readTypes:types completion:^(BOOL success, NSError *error) {
-            NSLog( @"Request success: %d error: %@", success, error);
-            HKAuthorizationStatus status = [self.healthStore authorizationStatusForType:caffeineType];
-            NSLog( @"Authorization status: %ld", status );
-            if (completion) {
-                completion(success, error);
-            }
-        }];
-    }
-}
-
 - (void)refreshSamples {
-    HKQuantityType *type = [HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierDietaryCaffeine];
-    HKSampleQuery *query = [[HKSampleQuery alloc] initWithSampleType:type
-                                                           predicate:nil
-                                                               limit:100
-                                                     sortDescriptors:nil
-                                                      resultsHandler:^(HKSampleQuery *query, NSArray *results, NSError *error) {
-                                                          if (error) {
-                                                              NSLog(@"Error fetching samples from HealthKit: %@", error);
-                                                          } else {
-                                                              self.samples = results;
-                                                              dispatch_async(dispatch_get_main_queue(), ^{
-                                                                  [self.sampleTableView reloadData];
-                                                              });
-                                                          }
-                                                      }];
-    [self.healthStore executeQuery:query];
-}
-
-#pragma mark - Observation of HealthKit
-
-- (void)startObservingHealthKit {
-    HKQuantityType *caffeineType = [HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierDietaryCaffeine];
-    HKObserverQuery *observationQuery = [[HKObserverQuery alloc] initWithSampleType:caffeineType predicate:nil updateHandler:^(HKObserverQuery *query, HKObserverQueryCompletionHandler completionHandler, NSError *error) {
-        [self refreshSamples];
+    [self.caffeineDataStore fetchCaffieneSamplesWithCompletion:^(NSArray *samples, NSError *error) {
+        if (samples) {
+            self.samples = samples;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.sampleTableView reloadData];
+            });
+        }
     }];
-    [self.healthStore executeQuery:observationQuery];
 }
 
 #pragma mark - UITableViewDataSource
@@ -101,7 +64,25 @@
     return cell;
 }
 
-#pragma mark - UITableViewDelegate
+#pragma mark - NSNotifications
 
+- (void)setCaffeineDataStore:(CaffeineDataStore *)caffeineDataStore {
+    if (_caffeineDataStore) {
+        [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                        name:kCaffeineDataUpdateNotificiation
+                                                      object:_caffeineDataStore];
+    }
+    _caffeineDataStore = caffeineDataStore;
+    if (_caffeineDataStore) {
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(didObserveDataUpdateNotification:)
+                                                     name:kCaffeineDataUpdateNotificiation
+                                                   object:self.caffeineDataStore];
+    }
+}
+
+- (void)didObserveDataUpdateNotification:(NSNotification *)notification {
+    [self refreshSamples];
+}
 
 @end

@@ -19,12 +19,7 @@
 - (void)saveQuantityIfAble {
     double value = [self.quantityTextField.text doubleValue];
     if (value > 0) {
-        HKUnit *unit = [HKUnit unitFromString:@"mg"];
-        HKQuantity *quantity = [HKQuantity quantityWithUnit:unit doubleValue:value];
-        HKQuantityType *type = [HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierDietaryCaffeine];
-        NSDate *now = [NSDate date];
-        HKQuantitySample *sample = [HKQuantitySample quantitySampleWithType:type quantity:quantity startDate:now endDate:now];
-        [self.healthStore saveObject:sample withCompletion:^(BOOL success, NSError *error) {
+        [self.caffeineDataStore saveCaffeineSample:value completion:^(BOOL success, NSError *error) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 self.quantityTextField.enabled = YES;
                 [self.quantityTextField setText:@""];
